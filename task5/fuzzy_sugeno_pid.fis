@@ -1,0 +1,76 @@
+[System]
+Name='fuzzy_sugeno_pid'
+Type='sugeno'
+Version=2.0
+NumInputs=5
+NumOutputs=3
+NumRules=6
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='PO'
+Range=[0 100]
+NumMFs=2
+MF1='Small':'gaussmf',[42.47 -8.882e-16]
+MF2='Big':'gaussmf',[42.47 100]
+
+[Input2]
+Name='OR'
+Range=[0 1]
+NumMFs=2
+MF1='Small':'gaussmf',[0.4247 0]
+MF2='Big':'gaussmf',[0.4247 1]
+
+[Input3]
+Name='damping'
+Range=[0 1]
+NumMFs=2
+MF1='Small':'gaussmf',[0.4247 0]
+MF2='Big':'gaussmf',[0.4247 1]
+
+[Input4]
+Name='T'
+Range=[0 100]
+NumMFs=2
+MF1='Small':'gaussmf',[42.47 -8.882e-16]
+MF2='Big':'gaussmf',[42.47 100]
+
+[Input5]
+Name='Tr'
+Range=[0 100]
+NumMFs=2
+MF1='Small':'gaussmf',[42.47 -8.882e-16]
+MF2='Big':'gaussmf',[42.47 100]
+
+[Output1]
+Name='Kc'
+Range=[0 1]
+NumMFs=2
+MF1='Small':'constant',[0]
+MF2='Big':'constant',[1]
+
+[Output2]
+Name='Ti'
+Range=[0 1]
+NumMFs=2
+MF1='Small':'constant',[0]
+MF2='Big':'constant',[1]
+
+[Output3]
+Name='Td'
+Range=[0 1]
+NumMFs=2
+MF1='Small':'constant',[0]
+MF2='Big':'constant',[1]
+
+[Rules]
+1 0 1 2 2, 1 0 0 (1) : 2
+2 0 2 1 1, 2 0 0 (1) : 2
+2 2 2 0 0, 0 1 0 (1) : 2
+1 1 1 0 0, 0 2 0 (1) : 2
+0 0 0 0 2, 0 2 1 (1) : 2
+0 0 0 0 1, 0 2 2 (1) : 2
